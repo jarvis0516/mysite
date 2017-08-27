@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 # Create your models here.
+<<<<<<< HEAD
 class Post(models.Model): #models.Model: Post(클래스첫자는 대문자)가 장고 모델(=객체)임을 나타낸다. 이 코드 덕에 장고는 Post가 DB에 저장된다 알게 됨.
     author = models.ForeignKey('auth.User') #다른 모델에 대한 링크
     title = models.CharField(max_length=200) #글자수가 제한된 텍스트
@@ -16,4 +17,19 @@ class Post(models.Model): #models.Model: Post(클래스첫자는 대문자)가 �
         self.save()
 
     def __str__(self): #얘를 호출하면 Post모델의 title을 얻음
+=======
+
+class Post(models.Model):
+    author = models.ForeignKey('auth.User')
+    title = models.CharField(max_length=200)
+    text = models.TextField(default=None)
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+>>>>>>> 13cf9dfe51ae403ce3933770d0dfaa02f3e02c9c
         return self.title
